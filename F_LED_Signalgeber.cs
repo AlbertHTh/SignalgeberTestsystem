@@ -21,7 +21,7 @@ using System.IO.Ports;
 using NationalInstruments;
 using NationalInstruments.DAQmx;
 
-
+// IDEEN - VORSCHLÄGE
 namespace LED
 {
 
