@@ -21,7 +21,7 @@ using System.IO.Ports;
 using NationalInstruments;
 using NationalInstruments.DAQmx;
 
-// IDEEN - VORSCHLÄGE
+
 namespace LED
 {
 
@@ -348,14 +348,14 @@ namespace LED
             ResetSV_ACDC();
         }
 
-        public void F_LED_Signalgeber_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void F_LED_Signalgeber_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e) 
         {
             if (bittimerTaste == false)
             {
                 timerTaste.Start();
                 bittimerTaste = true;
 
-                switch (e.KeyValue)
+                switch (e.KeyValue) // Diese Switch case anweisung vllt als Funktionsaufruf, die alle Tasten behandelt. Evtl. mit array, das man dann durchgeht 
                 {
                     case (char)27:    // Tastendruck "ESC" Presenter
 
@@ -584,7 +584,7 @@ namespace LED
         }
 
         // ****************************************************** Übernahme Parameter aus DB *****************************************************************
-
+        //Bei allen Datenbankaufrufen kommt immer der gleiche Code: Datenbankverbindung über Funktionsaufruf
         private void LoadID_MessequipmentDB()
         {
             OleDbConnection con = new OleDbConnection();
@@ -618,7 +618,8 @@ namespace LED
             }
             catch (Exception ex)
             {
-                MessageBox.Show("" + ex.Message, "LoadID_MessequipmentDB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("" + ex.Message, "LoadID_MessequipmentDB", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                // Hier als Beispiel (kommt aber sehr oft vor): MessageBox.Show nochmal als eigene Funktion, der man nur einen String mit dem Fehler übergibt
             }
 
             F_Einstellungen F_Einstellungen = new F_Einstellungen();
@@ -1227,7 +1228,7 @@ namespace LED
                 {
                     case "DMM_U":
 
-                        if (this.MessEquipmentIDN[0].ToUpper() == "HEWLETT-PACKARD")
+                        if (this.MessEquipmentIDN[0].ToUpper() == "HEWLETT-PACKARD") // Hier können die Inhalte der if-Blöcke als Funktion mit kleinen Übergabestrings wie z.b. Fehlerstrings etc. implementiert werden
                         {
                             Manufacturer[0] = MessEquipmentIDN[0].ToUpper();
 
